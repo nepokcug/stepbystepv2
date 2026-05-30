@@ -40,6 +40,9 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	if err != nil {
 		return errors.New("неверный формат продолжительности: " + err.Error())
 	}
+	if duration <= 0 {
+		return errors.New("продолжительность должна быть положительной")
+	}
 	ds.Duration = duration
 	return nil
 }
