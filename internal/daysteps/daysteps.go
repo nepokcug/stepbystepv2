@@ -74,7 +74,7 @@ func (ds DaySteps) ActionInfo() (string, error) {
 	//Формируем строку с информацией
 	result := fmt.Sprintf("Количество шагов: %d.\n", ds.Steps)
 	result += fmt.Sprintf("Дистанция составила %.2f км.\n", distance)
-	result += fmt.Sprintf("Вы сожгли %.2f ккал.", calories)
+	result += fmt.Sprintf("Вы сожгли %.2f ккал.\n", calories)
 
 	return result, nil
 }

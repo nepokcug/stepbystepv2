@@ -32,12 +32,18 @@ func (t *Training) Parse(datastring string) (err error) {
 	if err != nil {
 		return errors.New("неверный формат количества шагов: " + err.Error())
 	}
+	if steps <= 0 {
+		return errors.New("количество шагов должно быть положительным")
+	}
 	t.Steps = steps
 	//Сохраняем поля структуры
 	t.TrainingType = parts[1]
 	duration, err := time.ParseDuration(parts[2])
 	if err != nil {
 		return errors.New("неверный формат продолжительности: " + err.Error())
+	}
+	if duration <= 0 {
+		return errors.New("продолжительность должна быть положительной")
 	}
 	t.Duration = duration
 
@@ -89,6 +95,6 @@ func (t Training) ActionInfo() (string, error) {
 	result += fmt.Sprintf("Длительность: %.2f ч.\n", t.Duration.Hours())
 	result += fmt.Sprintf("Дистанция: %.2f км.\n", distance)
 	result += fmt.Sprintf("Скорость: %.2f км/ч\n", speed)
-	result += fmt.Sprintf("Сожгли калорий: %.2f", calories)
+	result += fmt.Sprintf("Сожгли калорий: %.2f\n", calories)
 	return result, nil
 }
